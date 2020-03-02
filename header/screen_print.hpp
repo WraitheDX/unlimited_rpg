@@ -2,8 +2,11 @@
 #ifndef _SCREEN_PRINT_HPP_
 #define _SCREEN_PRINT_HPP_
 
+// C++ Includes
 #include <iostream>
 #include <sstream>
+// Local Includes
+#include "code_definitions.hpp"
 
 class ScreenPrint final {
 public:
@@ -38,12 +41,10 @@ public:
     }
 
 private:
-    static bool m_screen_refreshed;
+    static Bool m_screen_refreshed;
 
     std::ostringstream m_output_stream;
 };
-
-bool ScreenPrint::m_screen_refreshed = true;
 
 #define spp ScreenPrint().print()
 #define spr ScreenPrint::refresh_screen()

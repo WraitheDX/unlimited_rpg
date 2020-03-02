@@ -136,10 +136,10 @@ public:
   }
 
 private:
-  static LogLevel     m_log_level;              // The level of messages the logger should report
-  const LogLevel      m_message_level;          // The message level of this instance
-  static std::string  m_file_name;              // The desired named of the log file
-  std::ostringstream  m_output_stream;          // The stream used for concatenating the message
+  static  LogLevel      m_log_level;              // The level of messages the logger should report
+  const   LogLevel      m_message_level;          // The message level of this instance
+  static  std::string   m_file_name;              // The desired named of the log file
+  std::ostringstream    m_output_stream;          // The stream used for concatenating the message
 
   // Write a string to the specified file name, with the option to truncate the file
   static void
@@ -177,8 +177,6 @@ private:
     return;
   }
 };
-
-LogLevel Logger::m_log_level( LogLevel::LOG_LEVEL_ERROR );
 
 #define log_error             Logger( LogLevel::LOG_LEVEL_ERROR ).log()
 #define log_warning           Logger( LogLevel::LOG_LEVEL_WARNING ).log()

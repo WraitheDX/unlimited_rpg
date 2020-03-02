@@ -1,0 +1,6 @@
+
+[TYPE]GAMEPLAY
+[NAME]In the loop!
+[EXITS_BEGIN]
+[EAST]room_main_menu.txt
+[EXITS_END]

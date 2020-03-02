@@ -138,11 +138,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\command_parser.cpp" />
+    <ClCompile Include="src\factory.cpp" />
+    <ClCompile Include="src\game_data.cpp" />
+    <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\room.cpp" />
+    <ClCompile Include="src\screen_print.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\actor.hpp" />
+    <ClInclude Include="header\code_definitions.hpp" />
+    <ClInclude Include="header\combatant.hpp" />
+    <ClInclude Include="header\command_parser.hpp" />
+    <ClInclude Include="header\command_set.hpp" />
+    <ClInclude Include="header\entity.hpp" />
+    <ClInclude Include="header\factory.hpp" />
+    <ClInclude Include="header\game_data.hpp" />
     <ClInclude Include="header\logger.hpp" />
+    <ClInclude Include="header\platform.hpp" />
+    <ClInclude Include="header\player.hpp" />
+    <ClInclude Include="header\room.hpp" />
     <ClInclude Include="header\screen_print.hpp" />
+    <ClInclude Include="header\utility_functions.hpp" />
+    <ClInclude Include="header\word_list.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

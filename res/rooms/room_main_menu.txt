@@ -1,0 +1,6 @@
+
+[TYPE]MAIN_MENU
+[NAME]Welcome to the RPG!
+[EXITS_BEGIN]
+[WEST]room_gameplay_core.txt
+[EXITS_END]

@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
@@ -141,14 +141,20 @@
     <ClCompile Include="src\command_parser.cpp" />
     <ClCompile Include="src\factory.cpp" />
     <ClCompile Include="src\game_data.cpp" />
+    <ClCompile Include="src\game_state.cpp" />
+    <ClCompile Include="src\game_state_manager.cpp" />
     <ClCompile Include="src\logger.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\npc.cpp" />
     <ClCompile Include="src\room.cpp" />
     <ClCompile Include="src\screen_print.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\actor.hpp" />
     <ClInclude Include="header\code_definitions.hpp" />
+    <ClInclude Include="header\game_state_main_menu.hpp" />
+    <ClInclude Include="header\game_state_manager.hpp" />
+    <ClInclude Include="header\game_state_play.hpp" />
     <ClInclude Include="header\npc.hpp" />
     <ClInclude Include="header\command_parser.hpp" />
     <ClInclude Include="header\command_set.hpp" />

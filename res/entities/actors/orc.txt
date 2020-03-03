@@ -3,3 +3,6 @@
 [HEALTH]5
 [Damage]3
 [GOLD]2
+[TAG_START]
+AGGRO
+[TAG_END]

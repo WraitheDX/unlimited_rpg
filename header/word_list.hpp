@@ -22,6 +22,7 @@ namespace Vocab {
 		go,
 		heal,
 		look,
+		play,
 		run,
 		spawn
 	};
@@ -37,7 +38,7 @@ namespace Vocab {
 	std::map <std::string, VerbList> g_verb_map = {
 		{ "exit", VerbList::exit }, { "fight", VerbList::fight },
 		{ "go", VerbList::go }, { "heal", VerbList::heal },
-		{ "look", VerbList::look }, { "run", VerbList::run },
+		{ "look", VerbList::look }, { "play", VerbList::play }, { "run", VerbList::run },
 		{ "spawn", VerbList::spawn }
 	};
 }

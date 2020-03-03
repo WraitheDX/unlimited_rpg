@@ -1,10 +1,10 @@
 
 #include "../header/factory.hpp"
 // Local Includes
-#include "../header/npc.hpp"
 #include "../header/code_definitions.hpp"
 #include "../header/game_data.hpp"
 #include "../header/logger.hpp"
+#include "../header/npc.hpp"
 #include "../header/platform.hpp"
 #include "../header/player.hpp"
 #include "../header/room.hpp"
@@ -16,7 +16,7 @@ namespace Factory {
 		return g_id_next;
 	}
 
-	void actor_create( const std::string & p_file_name ) {
+	void npc_create( const std::string & p_file_name ) {
 		const std::string & l_file_path( "res//entities//actors//" + p_file_name );
 		std::ifstream l_file( l_file_path );
 		
@@ -31,6 +31,7 @@ namespace Factory {
 		Int64 l_health( 0 );
 		Int64 l_damage( 0 );
 		Int64 l_gold( 0 );
+		std::vector <std::string> l_tags;
 
 		while( l_file.good() ) {
 			std::string l_file_line;
@@ -48,15 +49,25 @@ namespace Factory {
 			else if( l_file_line.substr( 0, 6 ) == "[GOLD]" ) {
 				l_gold = stoi( l_file_line.substr( 6, l_file_line.back() ) );
 			}
+			else if( l_file_line.substr( 0, 11 ) == "[TAG_START]" ) {
+				while( l_file.good() &&
+							 l_file_line != "[TAG_END]" ) {
+					std::getline( l_file, l_file_line );
+					l_tags.push_back( l_file_line );
+				}
+			}
 		}
 
-		actors.push_back( new NPC( get_next_id(), l_name, l_health, l_damage, l_gold ) );
+		actors.push_back( new NPC( get_next_id(), l_name, l_health, l_damage, l_gold, l_tags ) );
 	}
 
-	void actor_destroy( UInt64 p_actor_id ) {
+	void npc_destroy( UInt64 p_npc_id ) {
 		size_t l_actor_count( actors.size() );
 		for( size_t l_actor_iter( 0 ); l_actor_iter < l_actor_count; ++l_actor_iter ) {
-			if( actors[ l_actor_iter ]->get_id() == p_actor_id ) {
+			if( ( actors[ l_actor_iter ]->get_id() == p_npc_id ) &&
+					( dynamic_cast<NPC *>( actors[ l_actor_iter ] ) ) ) {
+				log_info << "Deleting NPC named: " << actors[ l_actor_iter ]->get_name();
+
 				delete actors[ l_actor_iter ];
 				actors.erase( actors.begin() + l_actor_iter );
 				return;
@@ -80,6 +91,8 @@ namespace Factory {
 		}
 
 		if( player != nullptr ) {
+			log_info << "Deleting Player named: " << player->get_name();
+
 			delete player;
 			player = nullptr;
 		}

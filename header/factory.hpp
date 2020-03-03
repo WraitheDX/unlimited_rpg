@@ -12,8 +12,8 @@
 class Room;
 
 namespace Factory {
-	void		actor_create( const std::string & p_file_name );
-	void		actor_destroy( UInt64 p_actor_id );
+	void		npc_create( const std::string & p_file_name );
+	void		npc_destroy( UInt64 p_npc_id );
 
 	void		player_create( const std::string & p_name );
 	void		player_destroy();

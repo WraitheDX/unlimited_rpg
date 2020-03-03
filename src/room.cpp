@@ -6,6 +6,7 @@
 #include "../header/command_set.hpp"
 #include "../header/factory.hpp"
 #include "../header/game_data.hpp"
+#include "../header/game_state_manager.hpp"
 
 std::map <std::string, RoomList> Room::g_roomlist_map = {
 	{ "MAIN_MENU", RoomList::main_menu },
@@ -13,7 +14,6 @@ std::map <std::string, RoomList> Room::g_roomlist_map = {
 };
 
 void display_stats( Actor & p_actor );
-void exit_game();
 
 void Room::game_loop()
 {
@@ -23,7 +23,7 @@ void Room::game_loop()
 
 	switch( l_command_set.m_verb ) {
 	case Vocab::VerbList::exit: {
-		exit_game();
+		GameStateManager::game_state_set_next( GameStateManager::GameStateList::MAIN_MENU );
 	} break;
 	case Vocab::VerbList::fight: {
 		
@@ -65,7 +65,7 @@ void Room::game_loop()
 		switch( l_command_set.m_noun ) {
 		case Vocab::NounList::orc: {
 			spp << "You spawn an orc!\n";
-			Factory::actor_create( "orc.txt" );
+			Factory::npc_create( "orc.txt" );
 		} break;
 		default: {
 			spp << "What is it you wish to spawn?\n";
@@ -84,11 +84,4 @@ void display_stats( Actor & p_actor )
 {
 	spp << p_actor.get_name() << "\nHP: " << p_actor.get_health_current()
 			<< "/" << p_actor.get_health_max() << "\n";
-}
-
-void exit_game() {
-	GameData::m_game_running = false;
-
-	spp << "Thank you so much for playing!\n\n";
-	spr;
 }

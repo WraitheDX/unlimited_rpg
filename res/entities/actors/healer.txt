@@ -1,0 +1,7 @@
+
+[NAME]Healer
+[HEALTH]10
+[Damage]2
+[GOLD]5
+[TAG_START]
+[TAG_END]

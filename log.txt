@@ -1,18 +1,10 @@
 
-03/02 03:32:06 ~PROGRESS: Creating Combatant - Player, HP: 25, Dam: 5
-03/02 03:32:06 ~PROGRESS: Attempting to open file: res//rooms//room_main_menu.txt
-03/02 03:32:06 ~PROGRESS: Succeeding in opening file
-03/02 03:32:06 ~PROGRESS: Room created, type: room_main_menu.txt
-03/02 03:32:08 --INFO---: Player command: go west
-03/02 03:32:08 ~PROGRESS: Attempting to open file: res//rooms//room_gameplay_core.txt
-03/02 03:32:08 ~PROGRESS: Succeeding in opening file
-03/02 03:32:08 ~PROGRESS: Room created, type: room_gameplay_core.txt
-03/02 03:32:10 --INFO---: Player command: go east
-03/02 03:32:10 ~PROGRESS: Attempting to open file: res//rooms//room_main_menu.txt
-03/02 03:32:11 ~PROGRESS: Succeeding in opening file
-03/02 03:32:11 ~PROGRESS: Room created, type: room_main_menu.txt
-03/02 03:32:16 --INFO---: Player command: go west
-03/02 03:32:16 ~PROGRESS: Attempting to open file: res//rooms//room_gameplay_core.txt
-03/02 03:32:16 ~PROGRESS: Succeeding in opening file
-03/02 03:32:16 ~PROGRESS: Room created, type: room_gameplay_core.txt
-03/02 03:32:18 --INFO---: Player command: exit
+03/03 05:35:59 --INFO---: Player command: 
+03/03 05:36:01 --INFO---: Player command: play
+03/03 05:36:01 ~PROGRESS: Creating Combatant - Player, HP: 25, Dam: 5
+03/03 05:36:01 ~PROGRESS: Attempting to open file: res//rooms//room_main_menu.txt
+03/03 05:36:01 ~PROGRESS: Succeeding in opening file
+03/03 05:36:01 ~PROGRESS: Room created, file name: room_main_menu.txt
+03/03 05:36:02 --INFO---: Player command: exit
+03/03 05:36:02 --INFO---: Deleting Player named: Player
+03/03 05:36:04 --INFO---: Player command: exit

@@ -10,12 +10,13 @@
 class Actor : public Entity {
 public:
 	explicit
-	Actor( const std::string & p_name, const Int64 p_health, const Int64 p_damage ) :
-		Entity( p_name ),
+	Actor( const UInt64 p_id, const std::string & p_name, const Int64 p_health, const Int64 p_damage, const Int64 p_gold ) :
+		Entity( p_id, p_name ),
 		m_alive( true ),
 		m_health_current( p_health ),
 		m_health_max( p_health ),
-		m_damage( p_damage )
+		m_damage( p_damage ),
+		m_gold( p_gold )
 	{
 		log_progress_detailed << "Creating Combatant - " << get_name() << ", HP: " << get_health_max() << ", Dam: " << get_damage();
 	}
@@ -60,6 +61,7 @@ private:
 	Int64 m_health_max;
 
 	Int64 m_damage;
+	Int64 m_gold;
 };
 
 #endif // _ACTOR_HPP_

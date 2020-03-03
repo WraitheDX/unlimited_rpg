@@ -10,7 +10,9 @@ namespace Vocab {
 	enum class NounList	{
 		null = 0,
 		north, south,
-		east, west
+		east, west,
+
+		orc
 	};
 
 	enum class VerbList {
@@ -20,13 +22,15 @@ namespace Vocab {
 		go,
 		heal,
 		look,
-		run
+		run,
+		spawn
 	};
 
 	static
 	std::map <std::string, NounList> g_noun_map = {
 		{ "north", NounList::north }, { "south", NounList::south },
-		{ "east", NounList::east }, { "west", NounList:: west }
+		{ "east", NounList::east }, { "west", NounList:: west },
+		{ "orc", NounList::orc }
 	};
 
 	static
@@ -34,6 +38,7 @@ namespace Vocab {
 		{ "exit", VerbList::exit }, { "fight", VerbList::fight },
 		{ "go", VerbList::go }, { "heal", VerbList::heal },
 		{ "look", VerbList::look }, { "run", VerbList::run },
+		{ "spawn", VerbList::spawn }
 	};
 }
 

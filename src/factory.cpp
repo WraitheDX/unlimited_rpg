@@ -1,24 +1,72 @@
 
 #include "../header/factory.hpp"
 // Local Includes
-#include "../header/actor.hpp"
+#include "../header/npc.hpp"
+#include "../header/code_definitions.hpp"
 #include "../header/game_data.hpp"
 #include "../header/logger.hpp"
 #include "../header/platform.hpp"
+#include "../header/player.hpp"
 #include "../header/room.hpp"
 
 namespace Factory {
+	static UInt64 g_id_next( 0 );
+	const UInt64 get_next_id() {
+		++g_id_next;
+		return g_id_next;
+	}
+
 	void actor_create( const std::string & p_file_name ) {
-	
+		const std::string & l_file_path( "res//entities//actors//" + p_file_name );
+		std::ifstream l_file( l_file_path );
+		
+		if( !l_file.is_open() ) {
+			log_error << "Failed to open file: " << l_file_path;
+			return;
+		}
+
+		log_info << "Creating actor from file: " << l_file_path;
+
+		std::string l_name( "" );
+		Int64 l_health( 0 );
+		Int64 l_damage( 0 );
+		Int64 l_gold( 0 );
+
+		while( l_file.good() ) {
+			std::string l_file_line;
+			std::getline( l_file, l_file_line );
+
+			if( l_file_line.substr( 0, 6 ) == "[NAME]" ) {
+				l_name = l_file_line.substr( 6, l_file_line.back() );
+			}
+			else if( l_file_line.substr( 0, 8 ) == "[HEALTH]" ) {
+				l_health = stoi( l_file_line.substr( 8, l_file_line.back() ) );
+			}
+			else if( l_file_line.substr( 0, 8 ) == "[DAMAGE]" ) {
+				l_damage = stoi( l_file_line.substr( 8, l_file_line.back() ) );
+			}
+			else if( l_file_line.substr( 0, 6 ) == "[GOLD]" ) {
+				l_gold = stoi( l_file_line.substr( 6, l_file_line.back() ) );
+			}
+		}
+
+		actors.push_back( new NPC( get_next_id(), l_name, l_health, l_damage, l_gold ) );
 	}
 
 	void actor_destroy( UInt64 p_actor_id ) {
-	
+		size_t l_actor_count( actors.size() );
+		for( size_t l_actor_iter( 0 ); l_actor_iter < l_actor_count; ++l_actor_iter ) {
+			if( actors[ l_actor_iter ]->get_id() == p_actor_id ) {
+				delete actors[ l_actor_iter ];
+				actors.erase( actors.begin() + l_actor_iter );
+				return;
+			}
+		}
 	}
 
 	void player_create( const std::string & p_name )
 	{
-		player = new Player( p_name, 25, 5 );
+		player = new Player( get_next_id(), p_name, 25, 5, 0 );
 		actors.push_back( player );
 	}
 
@@ -26,7 +74,7 @@ namespace Factory {
 	{
 		size_t l_actor_size( actors.size() );
 		for( size_t l_actor_iter( 0 ); l_actor_iter < l_actor_size; ++l_actor_iter ) {
-			if( dynamic_cast< Player *>( actors[ l_actor_iter ] ) ) {
+			if( dynamic_cast<Player *>( actors[ l_actor_iter ] ) ) {
 				actors.erase( actors.begin() + l_actor_iter );
 			}
 		}

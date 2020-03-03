@@ -1,7 +1,7 @@
 
 #include "../header/room.hpp"
 // Local Includes
-#include "../header/combatant.hpp"
+#include "../header/npc.hpp"
 #include "../header/command_parser.hpp"
 #include "../header/command_set.hpp"
 #include "../header/factory.hpp"
@@ -12,7 +12,6 @@ std::map <std::string, RoomList> Room::g_roomlist_map = {
 	{ "GAMEPLAY", RoomList::gameplay } 
 };
 
-void combat();
 void display_stats( Actor & p_actor );
 void exit_game();
 
@@ -27,7 +26,7 @@ void Room::game_loop()
 		exit_game();
 	} break;
 	case Vocab::VerbList::fight: {
-		combat();
+		
 	} break;
 	case Vocab::VerbList::go: {
 		switch( l_command_set.m_noun ) {
@@ -62,40 +61,23 @@ void Room::game_loop()
 	case Vocab::VerbList::run: {
 		spp << "You run for it!\n";
 	} break;
+	case Vocab::VerbList::spawn: {
+		switch( l_command_set.m_noun ) {
+		case Vocab::NounList::orc: {
+			spp << "You spawn an orc!\n";
+			Factory::actor_create( "orc.txt" );
+		} break;
+		default: {
+			spp << "What is it you wish to spawn?\n";
+		} break;
+		}
+	} break;
 	default: {
 		spp << "Unknown command\n";
 	} break;
 	}
 
 	spr;
-}
-
-void combat()
-{
-	Combatant l_combatant( "Orc", 15, 3 );
-
-	bool battle_running( true );
-	while( battle_running ) {
-		spp << "Player attacks " << l_combatant.get_name() << "!\n";
-		l_combatant.adjust_health_current( -player->get_damage() );
-		spp << "Orc attacks " << player->get_name() << "!\n";
-		player->adjust_health_current( -l_combatant.get_damage() );
-
-		display_stats( *player );
-		display_stats( l_combatant );
-
-		spr;
-
-		if( !player->is_alive() ) {
-			battle_running = false;
-			spp << "You have been defeated by " << l_combatant.get_name() << "\n";
-		} else if( !l_combatant.is_alive() ) {
-			battle_running = false;
-			spp << "You have bested " << l_combatant.get_name() << "\n";
-		}
-
-		spr;
-	}
 }
 
 void display_stats( Actor & p_actor )

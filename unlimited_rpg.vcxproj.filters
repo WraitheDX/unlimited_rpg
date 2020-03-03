@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Game Objects">
+      <UniqueIdentifier>{158c455f-6bc6-4f37-ace8-78b61c1e3221}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -44,19 +47,10 @@
     <ClInclude Include="header\screen_print.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="header\entity.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="header\game_data.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\code_definitions.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="header\combatant.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\command_parser.hpp">
@@ -80,8 +74,17 @@
     <ClInclude Include="header\utility_functions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor.hpp">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="header\npc.hpp">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="header\entity.hpp">
+      <Filter>Game Objects</Filter>
+    </ClInclude>
     <ClInclude Include="header\player.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Game Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

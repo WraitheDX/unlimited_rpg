@@ -5,7 +5,6 @@
 #include "../header/game_data.hpp"
 #include "../header/logger.hpp"
 #include "../header/room.hpp"
-#include "../header/screen_print.hpp"
 
 int main()
 {
@@ -21,13 +20,6 @@ int main()
 		room->game_loop();
 
 		Factory::room_change();
-
-		//log_progress_core << "Entering the combat loop";
-		//combat();
-
-		//if( !player.is_alive() ) {
-			//game_running = false; 
-		//}
 	}
 
 	Factory::room_destroy( room );

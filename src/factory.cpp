@@ -8,7 +8,7 @@
 #include "../header/platform.hpp"
 #include "../header/player.hpp"
 #include "../header/room.hpp"
-
+#include <algorithm>
 namespace Factory {
 	static UInt64 g_id_next( 0 );
 	const UInt64 get_next_id() {
@@ -16,13 +16,13 @@ namespace Factory {
 		return g_id_next;
 	}
 
-	void npc_create( const std::string & p_file_name ) {
+	const Int64 npc_create( const std::string & p_file_name, std::vector <std::string> p_tag_list ) {
 		const std::string & l_file_path( "res//entities//actors//" + p_file_name );
 		std::ifstream l_file( l_file_path );
 		
 		if( !l_file.is_open() ) {
 			log_error << "Failed to open file: " << l_file_path;
-			return;
+			return 0;
 		}
 
 		log_info << "Creating actor from file: " << l_file_path;
@@ -31,7 +31,7 @@ namespace Factory {
 		Int64 l_health( 0 );
 		Int64 l_damage( 0 );
 		Int64 l_gold( 0 );
-		std::vector <std::string> l_tags;
+		std::vector <std::string> l_tags( p_tag_list );
 
 		while( l_file.good() ) {
 			std::string l_file_line;
@@ -49,16 +49,19 @@ namespace Factory {
 			else if( l_file_line.substr( 0, 6 ) == "[GOLD]" ) {
 				l_gold = stoi( l_file_line.substr( 6, l_file_line.back() ) );
 			}
-			else if( l_file_line.substr( 0, 11 ) == "[TAG_START]" ) {
+			else if( l_file_line == "[TAGS_START]" ) {
 				while( l_file.good() &&
-							 l_file_line != "[TAG_END]" ) {
+							 l_file_line != "[TAGS_END]" ) {
 					std::getline( l_file, l_file_line );
 					l_tags.push_back( l_file_line );
 				}
 			}
 		}
 
-		actors.push_back( new NPC( get_next_id(), l_name, l_health, l_damage, l_gold, l_tags ) );
+		NPC * l_npc( new NPC( get_next_id(), l_name, l_health, l_damage, l_gold, l_tags ) );
+		actors.push_back( l_npc );
+
+		return l_npc->get_id();
 	}
 
 	void npc_destroy( UInt64 p_npc_id ) {
@@ -84,11 +87,10 @@ namespace Factory {
 	void player_destroy()
 	{
 		size_t l_actor_size( actors.size() );
-		for( size_t l_actor_iter( 0 ); l_actor_iter < l_actor_size; ++l_actor_iter ) {
-			if( dynamic_cast<Player *>( actors[ l_actor_iter ] ) ) {
-				actors.erase( actors.begin() + l_actor_iter );
-			}
-		}
+
+		std::remove_if( actors.begin(), actors.end(), []( Actor * l_actor ) {
+			return dynamic_cast<Player*>( l_actor );
+		} );
 
 		if( player != nullptr ) {
 			log_info << "Deleting Player named: " << player->get_name();
@@ -135,6 +137,7 @@ namespace Factory {
 		std::string l_room_type_string( "" );
 		RoomList l_room_type( RoomList::null );
 		std::vector <ExitList> l_room_exits;
+		std::vector <Int64> l_npc_ids;
 
 		size_t l_line_count( l_file_lines.size() );
 		for( UInt8 l_line_iter( 0 ); l_line_iter < l_line_count; ++l_line_iter ) {
@@ -179,13 +182,39 @@ namespace Factory {
 					l_file_line = l_file_lines[ l_line_iter ];
 				}
 			}
+			// Get actors within room
+			else if( l_file_line.substr( 0, 14 ) == "[ACTORS_BEGIN]" ) {
+				++l_line_iter;
+				l_file_line = l_file_lines[ l_line_iter ];
+
+				std::string l_actor_file_name( "" );
+				while( ( l_file_line.substr( 0, 12 ) != "[ACTORS_END]" ) &&
+							 ( l_line_iter <= l_line_count ) ) {
+					l_actor_file_name = l_file_line;
+					std::vector <std::string> l_tags;
+					if( l_file.good() && l_file_lines[ l_line_iter + 1 ] == "[TAGS_START]" ) {
+						l_line_iter += 2;
+						while( ( l_file_lines[ l_line_iter ] != "[TAGS_END]" ) &&
+										( l_file.good() ) ) {
+							l_tags.push_back( l_file_lines[ l_line_iter ] );
+							++l_line_iter;
+						}
+					}
+
+					l_npc_ids.push_back( npc_create( l_actor_file_name, l_tags ) );
+
+				++l_line_iter;
+				l_file_line = l_file_lines[ l_line_iter ];
+				}
+			}
 		}
 
-		return new Room( p_file_name, l_room_type, l_room_name, l_room_exits );
+		return new Room( p_file_name, l_room_type, l_room_name, l_room_exits, l_npc_ids );
 	}
 
 	void room_destroy( Room * p_room ) {
 		if( p_room != nullptr ) {
+			p_room->clean_up();
 			delete p_room;
 		}
 	}

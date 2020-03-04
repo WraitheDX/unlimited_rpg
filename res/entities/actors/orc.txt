@@ -3,6 +3,29 @@
 [HEALTH]5
 [Damage]3
 [GOLD]2
-[TAG_START]
-AGGRO
-[TAG_END]
+[TAGS_START]
+aggro
+[TAGS_END]
+
+
+
+
+
+
+[NPC]
+name=Orc
+health=5
+
+damage=3
+gold=2
+;
+[TAGS]
+aggro
+EOT
+
+
+while( file.good() ) {
+	string
+	getline(file, string );
+}
+

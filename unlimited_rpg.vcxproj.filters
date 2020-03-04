@@ -16,6 +16,9 @@
     <Filter Include="Game Objects">
       <UniqueIdentifier>{158c455f-6bc6-4f37-ace8-78b61c1e3221}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game States">
+      <UniqueIdentifier>{bbed75f2-e1a3-4280-87e0-2486b7a429af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -39,14 +42,14 @@
     <ClCompile Include="src\factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\npc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\game_state.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game States</Filter>
     </ClCompile>
     <ClCompile Include="src\game_state_manager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\npc.cpp">
+      <Filter>Game Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,14 +98,17 @@
     <ClInclude Include="header\player.hpp">
       <Filter>Game Objects</Filter>
     </ClInclude>
-    <ClInclude Include="header\game_state_play.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="header\game_state_main_menu.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Game States</Filter>
     </ClInclude>
     <ClInclude Include="header\game_state_manager.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="header\game_state_play.hpp">
+      <Filter>Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="header\game_state.hpp">
+      <Filter>Game States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

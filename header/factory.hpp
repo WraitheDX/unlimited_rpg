@@ -8,11 +8,12 @@
 #include <vector>
 // Local Includes
 #include "code_definitions.hpp"
+#include "word_list.hpp"
 // Forward Declarations
 class Room;
 
 namespace Factory {
-	void		npc_create( const std::string & p_file_name );
+	const Int64 npc_create( const std::string & p_file_name, std::vector <std::string> p_tag_list = std::vector <std::string>() );
 	void		npc_destroy( UInt64 p_npc_id );
 
 	void		player_create( const std::string & p_name );

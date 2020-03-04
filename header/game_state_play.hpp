@@ -13,7 +13,7 @@ class GameStatePlay final : public GameState {
 public:
 	GameStatePlay() {
 		Factory::player_create( "Player" );
-		room = Factory::room_create( "room_main_menu.txt" );
+		room = Factory::room_create( "room_healer_hut.txt" );
 	}
 
 	~GameStatePlay() = default;

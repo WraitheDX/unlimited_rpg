@@ -43,6 +43,8 @@ public:
 		health_check_range();
 	}
 
+	virtual void update() {}
+
 private:
 	void health_check_range()
 	{

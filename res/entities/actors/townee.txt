@@ -1,0 +1,5 @@
+
+[NAME]Orc
+[HEALTH]5
+[Damage]3
+[GOLD]2

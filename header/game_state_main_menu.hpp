@@ -21,8 +21,8 @@ public:
 	~GameStateMainMenu() = default;
 
 	void update() {
-		spp << "Welcome to the RPG!\n"
-				<< "This is the main menu...\n";
+		spp << "\t\tWelcome to the RPG!\n\n"
+				<< "Type 'play' to start a new game, or 'exit' to exit the game.\n";
 
 		CommandSet l_command_set( CommandParser::get_input() );
 		switch( l_command_set.m_verb ) {

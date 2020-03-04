@@ -14,6 +14,8 @@ Bool is_number( const std::string & p_string ) {
 			return false;
 		}
 	}
+
+	return true;
 }
 
 #endif // _UTILITY_FUNCTIONS_HPP_

@@ -10,7 +10,7 @@ namespace AITags {
 	};
 
 	static
-	std::map <std::string, TagList> m_tag_map = {
+	std::map <std::string, TagList> g_tag_map = {
 		{ "aggro", TagList::aggro }, { "idle", TagList::idle }
 	};
 

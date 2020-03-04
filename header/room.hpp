@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 // Local Includes
+#include "code_definitions.hpp"
 #include "logger.hpp"
 #include "screen_print.hpp"
 #include "word_list.hpp"
@@ -37,16 +38,19 @@ struct ExitList {
 class Room {
 public:
 	explicit
-	Room( const std::string & p_file_name, const RoomList p_room_type, const std::string & p_name, const std::vector <ExitList> & p_exit_list ) :
+	Room( const std::string & p_file_name, const RoomList p_room_type, const std::string & p_name,
+				const std::vector <ExitList> & p_exit_list, const std::vector <Int64> p_actor_ids ) :
 		m_room_type( p_room_type ),
 		m_name( p_name ),
-		m_exits( p_exit_list )
+		m_exits( p_exit_list ),
+		m_actor_ids( p_actor_ids )
 	{
 		log_progress_core << "Room created, file name: " << p_file_name;
 	}
 
 	~Room() = default;
 
+	void clean_up();
 	void game_loop();
 
 	static std::map <std::string, RoomList> g_roomlist_map;
@@ -57,6 +61,7 @@ private:
 	std::string m_name;
 
 	std::vector <ExitList> m_exits;
+	std::vector <Int64> m_actor_ids;
 };
 
 #endif // _ROOM_HPP_

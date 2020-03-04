@@ -1,0 +1,11 @@
+
+[TYPE]GAMEPLAY
+[NAME]In the loop!
+[EXITS_BEGIN]
+[EAST]room_orc_den.txt
+[EXITS_END]
+[ACTORS_BEGIN]
+healer.txt
+[TAGS_BEGIN]
+[TAGS_END]
+[ACTORS_END]

@@ -17,3 +17,10 @@ I would like to have a healer that you can pay to heal your wounds, an orc that 
 and a merchant that buys and sells wares (items not yet implemented). My current thought is to
 make the NPC class a very large finite state machine, and have the actor text files contain
 lots of tags, all of which can have different values and conditions to trigger.
+
+Todo:
+Refactor text file loading of npcs and rooms
+Add Saving
+Add Loading
+	Add browsing for save files
+Have entities add in their own nouns to the map on load

@@ -15,9 +15,23 @@ std::map <std::string, RoomList> Room::g_roomlist_map = {
 
 void display_stats( Actor & p_actor );
 
-void Room::game_loop()
-{
+void Room::clean_up() {
+	size_t l_actor_count( m_actor_ids.size() );
+	for( size_t l_actor_iter( 0 ); l_actor_iter < l_actor_count; ++l_actor_iter ) {
+		Factory::npc_destroy( m_actor_ids[ l_actor_iter ] );
+	}
+
+	m_actor_ids.clear();
+}
+
+void Room::game_loop() {
 	spp << "\t\t" << m_name << "\n\n";
+
+	for( size_t l_iter( 0 ); l_iter < actors.size(); ++l_iter ) {
+		if( !dynamic_cast<Player *>( actors[ l_iter ] ) ) {
+			actors[ l_iter ]->update();
+		}
+	}
 
 	CommandSet l_command_set( CommandParser::get_input() );
 

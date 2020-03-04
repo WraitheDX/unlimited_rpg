@@ -152,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="header\actor.hpp" />
     <ClInclude Include="header\code_definitions.hpp" />
+    <ClInclude Include="header\game_state.hpp" />
     <ClInclude Include="header\game_state_main_menu.hpp" />
     <ClInclude Include="header\game_state_manager.hpp" />
     <ClInclude Include="header\game_state_play.hpp" />

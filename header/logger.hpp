@@ -54,7 +54,11 @@ public:
     std::time_t l_time( std::time( 0 ) );
     // Convert the current time into something more easily handled
     std::tm l_current_time;
+#if defined(__unix__) || defined(__APPLE__)
+	localtime_r( &l_time, &l_current_time );
+#else
     localtime_s( &l_current_time, &l_time );
+#endif
 
     // Append the month, adding 0 if needed to keep uniform alignment
     if( ( l_current_time.tm_mon + 1 ) < 10 )

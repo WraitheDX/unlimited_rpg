@@ -346,3 +346,6 @@ healthchecksdb
 /.clangd/
 /build/
 /compile_commands.json
+
+# Debug Logs from the project
+/log.txt

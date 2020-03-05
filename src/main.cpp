@@ -8,6 +8,8 @@
 
 int main( int p_argument_count, char ** p_argument_list )
 {
+	ScreenPrint::initialize();
+
 	/*
 	for( int l( 0 ); l < argc; ++l ) {
 		if( arguments[ l ] == "min" );

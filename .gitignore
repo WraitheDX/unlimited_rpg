@@ -341,3 +341,8 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Linux (VIM/...) development
+/.clangd/
+/build/
+/compile_commands.json

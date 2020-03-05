@@ -19,7 +19,7 @@ public:
 
 	virtual ~Entity() = default;
 
-	const UInt64 get_id() { return m_id; }
+	UInt64 get_id() { return m_id; }
 
 	const std::string & get_name() { return m_name; }
 

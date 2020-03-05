@@ -8,15 +8,17 @@
 #include "../header/platform.hpp"
 #include "../header/player.hpp"
 #include "../header/room.hpp"
+
 #include <algorithm>
+
 namespace Factory {
 	static UInt64 g_id_next( 0 );
-	const UInt64 get_next_id() {
+	UInt64 get_next_id() {
 		++g_id_next;
 		return g_id_next;
 	}
 
-	const Int64 npc_create( const std::string & p_file_name, std::vector <std::string> p_tag_list ) {
+	Int64 npc_create( const std::string & p_file_name, std::vector <std::string> p_tag_list ) {
 		const std::string & l_file_path( "res//entities//actors//" + p_file_name );
 		std::ifstream l_file( l_file_path );
 		

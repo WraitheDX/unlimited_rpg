@@ -13,7 +13,7 @@
 class Room;
 
 namespace Factory {
-	const Int64 npc_create( const std::string & p_file_name, std::vector <std::string> p_tag_list = std::vector <std::string>() );
+	Int64 npc_create( const std::string & p_file_name, std::vector <std::string> p_tag_list = std::vector <std::string>() );
 	void		npc_destroy( UInt64 p_npc_id );
 
 	void		player_create( const std::string & p_name );

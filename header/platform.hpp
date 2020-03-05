@@ -4,14 +4,11 @@
 
 // C++ Includes
 #include <string>
+#include <filesystem>
 
 static
 std::string get_filepath_separator() {
-#ifdef _WIN32
-	{
-		return "//";
-	}
-#endif // _WIN32
+	return std::string{std::filesystem::path::preferred_separator};
 }
 
 #endif // _PLATFORM_HPP_

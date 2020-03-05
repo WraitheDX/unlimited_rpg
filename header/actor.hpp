@@ -23,11 +23,11 @@ public:
 
 	virtual ~Actor() = default;
 
-	const Bool is_alive() { return m_alive; }
+	Bool is_alive() { return m_alive; }
 
-	const Int64 get_health_current() { return m_health_current; }
-	const Int64 get_health_max() { return m_health_max; }
-	const Int64 get_damage() { return m_damage; }
+	Int64 get_health_current() { return m_health_current; }
+	Int64 get_health_max() { return m_health_max; }
+	Int64 get_damage() { return m_damage; }
 
 	void adjust_health_current( const Int64 p_health )
 	{

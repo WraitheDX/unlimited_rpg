@@ -22,4 +22,4 @@ public:
 	void update() = 0;
 };
 
-#endif _GAME_STATE_HPP_
+#endif // _GAME_STATE_HPP_

@@ -30,4 +30,4 @@ public:
 	}
 };
 
-#endif _GAME_STATE_PLAY_HPP_
+#endif // _GAME_STATE_PLAY_HPP_

@@ -20,4 +20,4 @@ namespace GameStateManager {
 	void game_state_update();
 }
 
-#endif _GAME_STATE_MANAGER_HPP_
+#endif // _GAME_STATE_MANAGER_HPP_
